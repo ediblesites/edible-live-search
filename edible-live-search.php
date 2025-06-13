@@ -3,7 +3,7 @@
  * Plugin Name: Edible Live Search
  * Plugin URI: https://github.com/edible-live-search
  * Description: A customizable live search widget with AJAX-powered autocomplete functionality, analytics tracking, and comprehensive admin configuration.
- * Version: 1.0.3
+ * Version: 1.0.4
  * Author: Edible Team
  * Author URI: https://edible.com
  * License: GPL v2 or later
@@ -22,7 +22,7 @@ if (!defined('ABSPATH')) {
 }
 
 // Define plugin constants
-define('EDIBLE_LIVE_SEARCH_VERSION', '1.0.3');
+define('EDIBLE_LIVE_SEARCH_VERSION', '1.0.4');
 define('EDIBLE_LIVE_SEARCH_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('EDIBLE_LIVE_SEARCH_PLUGIN_URL', plugin_dir_url(__FILE__));
 define('EDIBLE_LIVE_SEARCH_PLUGIN_FILE', __FILE__);
