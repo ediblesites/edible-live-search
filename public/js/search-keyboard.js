@@ -51,13 +51,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
                 }
                 break;
-                
-            case 'Escape':
-                e.preventDefault();
-                currentIndex = -1;
-                updateSelection(resultItems);
-                resultsContainer.style.display = 'none';
-                break;
         }
     });
     

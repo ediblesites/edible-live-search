@@ -173,6 +173,7 @@ function edible_live_search_get_form($atts = array()) {
                      name="search_term" 
                      class="edible-search-input" 
                      placeholder="' . esc_attr($atts['placeholder']) . '"
+                     autocomplete="off"
                      hx-post="' . esc_url($ajax_url) . '"
                      hx-trigger="keyup changed delay:' . edible_live_search_get_option('search_delay', 300) . 'ms"
                      hx-target="#edible-search-results"
