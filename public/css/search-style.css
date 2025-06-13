@@ -1,0 +1,173 @@
+/* Edible Live Search - Minimal Styles */
+
+.edible-search-form {
+    position: relative;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.edible-search-input {
+    width: 100%;
+    padding: 12px 16px;
+    font-size: 16px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    background: #fff;
+    transition: border-color 0.3s ease;
+    box-sizing: border-box;
+}
+
+.edible-search-input:focus {
+    outline: none;
+    border-color: #0073aa;
+}
+
+.edible-search-input::placeholder {
+    color: #999;
+}
+
+/* Loading indicator */
+.edible-loading {
+    display: none;
+    position: absolute;
+    top: 50%;
+    right: 16px;
+    transform: translateY(-50%);
+    color: #666;
+    font-size: 14px;
+}
+
+.htmx-request .edible-loading {
+    display: block;
+}
+
+/* Results container */
+.edible-search-results-container {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-top: none;
+    border-radius: 0 0 8px 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.edible-search-results {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.edible-search-result-item {
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.edible-search-result-item:last-child {
+    border-bottom: none;
+}
+
+.edible-search-result-item:hover {
+    background-color: #f8f9fa;
+}
+
+.edible-search-result-link {
+    display: flex;
+    padding: 12px 16px;
+    text-decoration: none;
+    color: inherit;
+    align-items: center;
+    gap: 12px;
+}
+
+.edible-search-result-link:hover {
+    text-decoration: none;
+    color: inherit;
+}
+
+.edible-search-result-thumbnail {
+    flex-shrink: 0;
+    width: 60px;
+    height: 60px;
+    border-radius: 6px;
+    overflow: hidden;
+    background: #f0f0f0;
+}
+
+.edible-search-result-thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.edible-search-result-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.edible-search-result-title {
+    margin: 0 0 4px 0;
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    line-height: 1.3;
+}
+
+.edible-search-result-excerpt {
+    margin: 0;
+    font-size: 14px;
+    color: #666;
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* No results */
+.edible-search-no-results {
+    padding: 20px;
+    text-align: center;
+    color: #666;
+}
+
+.edible-search-no-results p {
+    margin: 0;
+    font-size: 14px;
+}
+
+/* Color schemes - minimal */
+.edible-search-color-dark .edible-search-input {
+    background: #333;
+    border-color: #555;
+    color: #fff;
+}
+
+.edible-search-color-dark .edible-search-input::placeholder {
+    color: #ccc;
+}
+
+.edible-search-color-light .edible-search-input {
+    background: #f8f9fa;
+    border-color: #e9ecef;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .edible-search-form {
+        max-width: 100%;
+    }
+    
+    .edible-search-input {
+        font-size: 16px; /* Prevent zoom on iOS */
+    }
+    
+    .edible-search-result-thumbnail {
+        width: 50px;
+        height: 50px;
+    }
+} 

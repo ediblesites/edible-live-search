@@ -1,0 +1,6 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+On every change you suggest, also bump the patch number of constant LIVE_SEARCH_VERSION and the Version in the plugin header in the plugin main file.
