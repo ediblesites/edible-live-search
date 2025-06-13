@@ -74,6 +74,14 @@
     z-index: 1000;
     max-height: 400px;
     overflow-y: auto;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.edible-search-results-container:not(:empty) {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .edible-search-results {

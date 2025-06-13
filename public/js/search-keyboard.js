@@ -5,6 +5,20 @@ document.addEventListener('DOMContentLoaded', function() {
     let currentIndex = -1;
     let searchResults = [];
     
+    // Auto-trigger search if input has value on page load
+    function autoTriggerSearch() {
+        const searchInputs = document.querySelectorAll('.edible-search-input');
+        searchInputs.forEach(input => {
+            if (input.value.trim().length >= 3) {
+                // Trigger HTMX request
+                htmx.trigger(input, 'keyup');
+            }
+        });
+    }
+    
+    // Run auto-trigger after a short delay to ensure HTMX is ready
+    setTimeout(autoTriggerSearch, 100);
+    
     // Listen for search input events
     document.addEventListener('keydown', function(e) {
         const searchInput = e.target.closest('.edible-search-input');
