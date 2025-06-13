@@ -37,8 +37,8 @@ function edible_live_search_handler() {
     // Process search query
     $results = edible_live_search_process_query($search_term);
     
-    // Log analytics if enabled
-    if (edible_live_search_get_option('enable_analytics', true)) {
+    // Log analytics if enabled and search term is 3+ characters
+    if (edible_live_search_get_option('enable_analytics', true) && strlen($search_term) >= 3) {
         edible_live_search_log_query($search_term, count($results));
     }
     
