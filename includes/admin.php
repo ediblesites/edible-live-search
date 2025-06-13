@@ -82,6 +82,14 @@ function edible_live_search_settings_page() {
                     </tr>
                     
                     <tr>
+                        <th scope="row"><?php _e('No Results Text', 'edible-live-search'); ?></th>
+                        <td>
+                            <input type="text" name="edible_live_search_options[no_results_text]" value="<?php echo esc_attr($options['no_results_text']); ?>" class="regular-text">
+                            <p class="description"><?php _e('Text displayed when no search results are found', 'edible-live-search'); ?></p>
+                        </td>
+                    </tr>
+                    
+                    <tr>
                         <th scope="row"><?php _e('Post Types', 'edible-live-search'); ?></th>
                         <td>
                             <?php
@@ -362,6 +370,9 @@ function edible_live_search_save_settings() {
     
     // Placeholder
     $sanitized_options['placeholder'] = isset($new_options['placeholder']) ? sanitize_text_field($new_options['placeholder']) : __('Search...', 'edible-live-search');
+    
+    // No results text
+    $sanitized_options['no_results_text'] = isset($new_options['no_results_text']) ? sanitize_text_field($new_options['no_results_text']) : __('No results found', 'edible-live-search');
     
     // Post types
     $sanitized_options['post_types'] = isset($new_options['post_types']) ? array_map('sanitize_text_field', $new_options['post_types']) : array('post', 'page');

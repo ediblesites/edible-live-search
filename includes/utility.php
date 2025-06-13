@@ -48,6 +48,7 @@ function edible_live_search_get_default_options() {
         'fallback_image_id' => 0,
         'color_scheme' => 'default',
         'placeholder' => __('Search...', 'edible-live-search'),
+        'no_results_text' => __('No results found', 'edible-live-search'),
         'enable_caching' => false,
         'cache_duration' => 3600
     );

@@ -124,8 +124,9 @@ function edible_live_search_process_query($search_term) {
  */
 function edible_live_search_generate_results($posts, $search_term) {
     if (empty($posts)) {
+        $no_results_text = edible_live_search_get_option('no_results_text', __('No results found', 'edible-live-search'));
         return '<div class="edible-search-no-results">' . 
-               '<p>' . sprintf(__('No results found for "%s"', 'edible-live-search'), esc_html($search_term)) . '</p>' .
+               '<p>' . esc_html($no_results_text) . '</p>' .
                '</div>';
     }
     
