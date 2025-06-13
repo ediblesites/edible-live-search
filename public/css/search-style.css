@@ -9,6 +9,7 @@
 .edible-search-input {
     width: 100%;
     padding: 12px 16px;
+    padding-right: 45px; /* Make room for the icon */
     font-size: 16px;
     border: 2px solid #ddd;
     border-radius: 8px;
@@ -26,6 +27,19 @@
     color: #999;
 }
 
+/* Loupe icon */
+.edible-search-form::after {
+    content: "🔍";
+    position: absolute;
+    top: 50%;
+    right: 16px;
+    transform: translateY(-50%);
+    font-size: 18px;
+    color: #666;
+    pointer-events: none;
+    z-index: 1;
+}
+
 /* Loading indicator */
 .edible-loading {
     display: none;
@@ -39,6 +53,11 @@
 
 .htmx-request .edible-loading {
     display: block;
+}
+
+/* Hide loupe when loading */
+.htmx-request .edible-search-form::after {
+    display: none;
 }
 
 /* Results container */

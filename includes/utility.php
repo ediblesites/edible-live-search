@@ -185,6 +185,15 @@ function edible_live_search_enqueue_scripts() {
             EDIBLE_LIVE_SEARCH_VERSION
         );
         
+        // Enqueue keyboard navigation
+        wp_enqueue_script(
+            'edible-live-search-keyboard',
+            EDIBLE_LIVE_SEARCH_PLUGIN_URL . 'public/js/search-keyboard.js',
+            array(),
+            EDIBLE_LIVE_SEARCH_VERSION,
+            true
+        );
+        
         // Localize script for AJAX URL and nonce
         wp_localize_script('htmx', 'edible_live_search_ajax', array(
             'ajax_url' => admin_url('admin-ajax.php'),
