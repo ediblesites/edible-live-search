@@ -134,7 +134,7 @@ function edible_live_search_generate_results($posts, $search_term) {
     
     foreach ($posts as $post) {
         $thumbnail = edible_live_search_get_thumbnail($post->ID);
-        $excerpt = wp_trim_words($post->post_excerpt ?: $post->post_content, 20, '...');
+        $excerpt = wp_trim_words($post->post_excerpt, 20, '...');
         
         $html .= '<div class="edible-search-result-item">';
         $html .= '<a href="' . get_permalink($post->ID) . '" class="edible-search-result-link">';
