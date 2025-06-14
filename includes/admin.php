@@ -142,6 +142,32 @@ function edible_live_search_settings_page() {
                             ?>
                         </td>
                     </tr>
+                    
+                    <tr>
+                        <th scope="row"><?php _e('Default Search Result', 'edible-live-search'); ?></th>
+                        <td>
+                            <select name="edible_live_search_options[default_result_page_id]">
+                                <option value=""><?php _e('No default result (show "no results" message)', 'edible-live-search'); ?></option>
+                                <?php
+                                $pages = get_posts(array(
+                                    'post_type' => 'page',
+                                    'post_status' => 'publish',
+                                    'numberposts' => -1,
+                                    'orderby' => 'title',
+                                    'order' => 'ASC'
+                                ));
+                                
+                                $selected_page_id = $options['default_result_page_id'] ?? '';
+                                
+                                foreach ($pages as $page) {
+                                    $selected = ($selected_page_id == $page->ID) ? 'selected' : '';
+                                    echo '<option value="' . esc_attr($page->ID) . '" ' . $selected . '>' . esc_html($page->post_title) . '</option>';
+                                }
+                                ?>
+                            </select>
+                            <p class="description"><?php _e('Select a page to display when no search results are found. This page will appear formatted like a regular search result.', 'edible-live-search'); ?></p>
+                        </td>
+                    </tr>
                 </table>
             </div>
             
@@ -388,6 +414,9 @@ function edible_live_search_save_settings() {
     
     // Search fields
     $sanitized_options['search_fields'] = isset($new_options['search_fields']) ? array_map('sanitize_text_field', $new_options['search_fields']) : array('title', 'content');
+    
+    // Default result page
+    $sanitized_options['default_result_page_id'] = isset($new_options['default_result_page_id']) ? max(0, intval($new_options['default_result_page_id'])) : 0;
     
     // Fallback image
     $sanitized_options['fallback_image_id'] = isset($new_options['fallback_image_id']) ? max(0, intval($new_options['fallback_image_id'])) : 0;

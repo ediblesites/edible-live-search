@@ -43,6 +43,7 @@ function edible_live_search_get_default_options() {
         'min_characters' => 3,
         'search_delay' => 300,
         'search_fields' => array('title', 'content'),
+        'default_result_page_id' => 0,
         'enable_analytics' => true,
         'data_retention_days' => 90,
         'fallback_image_id' => 0,

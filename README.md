@@ -31,13 +31,6 @@ A lightweight, HTMX-powered live search plugin for WordPress with analytics trac
 - **Minimum characters** - 1-10 character threshold
 - **Search delay** - 100-2000ms debouncing
 
-## Installation
-
-1. Upload the plugin files to `/wp-content/plugins/edible-live-search/`
-2. Activate the plugin through the WordPress admin
-3. Configure settings at **Settings > Live Search**
-4. Add the shortcode to your pages
-
 ## Usage
 
 ### Shortcode

@@ -4,11 +4,11 @@ Tags: search, ajax, live search, autocomplete, analytics, widget, shortcode
 Requires at least: 5.0
 Tested up to: 6.4
 Requires PHP: 7.4
-Stable tag: 1.0.0
+Stable tag: 1.0.7
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-A customizable live search widget with AJAX-powered autocomplete functionality, analytics tracking, and comprehensive admin configuration.
+A customizable live search widget with AJAX-powered autocomplete functionality, analytics tracking, and comprehensive admin configuration. Features include default search result pages for improved user experience when no results are found.
 
 == Description ==
 
@@ -18,6 +18,7 @@ Edible Live Search provides a powerful, customizable search experience for your 
 
 * **Live Search**: Real-time search results as users type with configurable delay
 * **HTMX Integration**: Modern AJAX implementation without heavy JavaScript
+* **Default Search Results**: Configure a page to display when no search results are found
 * **Analytics Tracking**: Comprehensive search analytics with popular searches and failure tracking
 * **Multiple Embedding Options**: Shortcode, PHP function, and widget support
 * **Customizable Appearance**: Multiple color schemes and custom CSS support
@@ -97,6 +98,17 @@ Absolutely! The search interface is built with a mobile-first approach and inclu
 
 == Changelog ==
 
+= 1.0.7 =
+* Code refactoring: Created reusable template function for search result items
+* Eliminated code duplication between regular results and default search results
+* Improved maintainability and consistency of search result display
+
+= 1.0.6 =
+* Added default search result feature - configure a page to display when no search results are found
+* Improved user experience by providing helpful fallback content instead of empty results
+* Admin can select any published page as the default search result
+* Default result appears formatted identically to regular search results
+
 = 1.0.0 =
 * Initial release
 * Live search functionality with HTMX
@@ -120,32 +132,4 @@ Initial release of Edible Live Search plugin.
 `[edible_live_search placeholder="Search posts..." results_limit="10" color_scheme="dark"]`
 
 = PHP Function =
-```php
-<?php
-// Basic usage
-edible_live_search();
-
-// With parameters
-edible_live_search(array(
-    'placeholder' => 'Search...',
-    'results_limit' => 8,
-    'post_types' => array('post', 'page', 'product'),
-    'color_scheme' => 'blue'
-));
-?>
 ```
-
-= Widget =
-1. Go to Appearance > Widgets
-2. Add "Edible Live Search" widget to desired widget area
-3. Configure widget settings
-4. Save
-
-== Support ==
-
-For support, feature requests, or bug reports, please visit our GitHub repository or contact us through our website.
-
-== Credits ==
-
-Built with HTMX for modern AJAX functionality.
-Designed with accessibility and performance in mind. 

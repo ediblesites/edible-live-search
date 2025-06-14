@@ -124,6 +124,23 @@ function edible_live_search_process_query($search_term) {
  */
 function edible_live_search_generate_results($posts, $search_term) {
     if (empty($posts)) {
+        // Check if default result page is configured
+        $default_page_id = edible_live_search_get_option('default_result_page_id', 0);
+        
+        if ($default_page_id > 0) {
+            $default_page = get_post($default_page_id);
+            
+            // Verify the page exists and is published
+            if ($default_page && $default_page->post_status === 'publish') {
+                $html = '<div class="edible-search-results">';
+                $html .= edible_live_search_get_result_item_template($default_page);
+                $html .= '</div>';
+                
+                return $html;
+            }
+        }
+        
+        // Fall back to no results text if no default page or page is invalid
         $no_results_text = edible_live_search_get_option('no_results_text', __('No results found', 'edible-live-search'));
         return '<div class="edible-search-no-results">' . 
                '<p>' . esc_html($no_results_text) . '</p>' .
@@ -133,22 +150,31 @@ function edible_live_search_generate_results($posts, $search_term) {
     $html = '<div class="edible-search-results">';
     
     foreach ($posts as $post) {
-        $thumbnail = edible_live_search_get_thumbnail($post->ID);
-        $excerpt = wp_trim_words($post->post_excerpt, 20, '...');
-        
-        $html .= '<div class="edible-search-result-item">';
-        $html .= '<a href="' . get_permalink($post->ID) . '" class="edible-search-result-link">';
-        $html .= '<div class="edible-search-result-thumbnail">';
-        $html .= '<img src="' . esc_url($thumbnail['url']) . '" alt="' . esc_attr($post->post_title) . '" width="' . $thumbnail['width'] . '" height="' . $thumbnail['height'] . '">';
-        $html .= '</div>';
-        $html .= '<div class="edible-search-result-content">';
-        $html .= '<h4 class="edible-search-result-title">' . esc_html($post->post_title) . '</h4>';
-        $html .= '<p class="edible-search-result-excerpt">' . esc_html($excerpt) . '</p>';
-        $html .= '</div>';
-        $html .= '</a>';
-        $html .= '</div>';
+        $html .= edible_live_search_get_result_item_template($post);
     }
     
+    $html .= '</div>';
+    
+    return $html;
+}
+
+/**
+ * Get search result item template
+ */
+function edible_live_search_get_result_item_template($post) {
+    $thumbnail = edible_live_search_get_thumbnail($post->ID);
+    $excerpt = wp_trim_words($post->post_excerpt ?: $post->post_content, 20, '...');
+    
+    $html = '<div class="edible-search-result-item">';
+    $html .= '<a href="' . get_permalink($post->ID) . '" class="edible-search-result-link">';
+    $html .= '<div class="edible-search-result-thumbnail">';
+    $html .= '<img src="' . esc_url($thumbnail['url']) . '" alt="' . esc_attr($post->post_title) . '" width="' . $thumbnail['width'] . '" height="' . $thumbnail['height'] . '">';
+    $html .= '</div>';
+    $html .= '<div class="edible-search-result-content">';
+    $html .= '<h4 class="edible-search-result-title">' . esc_html($post->post_title) . '</h4>';
+    $html .= '<p class="edible-search-result-excerpt">' . esc_html($excerpt) . '</p>';
+    $html .= '</div>';
+    $html .= '</a>';
     $html .= '</div>';
     
     return $html;

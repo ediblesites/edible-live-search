@@ -21,6 +21,7 @@ A WordPress plugin that provides a customizable live search widget with AJAX-pow
 ### Admin Configuration Panel
 - **Post Type Selection**: Checkbox interface to choose which post types to include in search
 - **Results Limit**: Number input to set maximum results displayed (default: 5, range: 1-20)
+- **Default Search Result**: Dropdown to select a page to display when no search results are found (optional)
 - **Thumbnail Settings**: 
   - Thumbnails always enabled and displayed
   - Fixed thumbnail size: 60x60 pixels (cropped)
@@ -65,9 +66,10 @@ The search interface consists of a simple HTML form with HTMX attributes:
 2. **HTMX Trigger**: After 300ms delay, HTMX automatically sends GET request to WordPress AJAX endpoint
 3. **Server Processing**: WordPress processes the request via registered AJAX action
 4. **Query Execution**: Server runs WP_Query with search parameters and post type filters
-5. **HTML Generation**: Server renders HTML fragment with search results
-6. **Response Handling**: HTMX receives HTML response and automatically inserts it into target div
-7. **Analytics Logging**: Server logs search term, result count, and timestamp to database
+5. **Results Processing**: If no results found and default search result page is configured, display that page instead
+6. **HTML Generation**: Server renders HTML fragment with search results or default result
+7. **Response Handling**: HTMX receives HTML response and automatically inserts it into target div
+8. **Analytics Logging**: Server logs search term, result count, and timestamp to database
 
 #### Server-Side AJAX Handler
 ```php
@@ -81,9 +83,10 @@ function handle_edible_search() {
     // 3. Check minimum character threshold
     // 4. Build WP_Query with admin settings
     // 5. Execute search query
-    // 6. Generate HTML for each result
-    // 7. Log analytics data
-    // 8. Return HTML fragment
+    // 6. If no results and default page configured, get default page data
+    // 7. Generate HTML for results or default result
+    // 8. Log analytics data
+    // 9. Return HTML fragment
 }
 ```
 
@@ -153,6 +156,7 @@ function handle_edible_search() {
 - Minimum characters to trigger search
 - Search delay timing
 - Fields to search within
+- Default search result page (dropdown of available pages)
 
 #### Appearance Settings
 - Color scheme options
@@ -221,3 +225,4 @@ function handle_edible_search() {
 - **Custom Post Field Display**: Show additional custom field values in results
 - **Multi-language Support**: WPML and Polylang integration
 - **API Integration**: External search service integration options
+- **Default Result Customization**: Visual indicators for default search results, multiple fallback options

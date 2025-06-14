@@ -14,6 +14,7 @@ A WordPress plugin providing live search functionality with AJAX-powered autocom
 - [x] Settings page with tabbed interface
 - [x] Configuration options (post types, results limit, search fields, etc.)
 - [x] Placeholder text setting (admin configurable)
+- [x] Default search result page selection (dropdown of available pages)
 - [x] Color scheme selection
 - [x] Analytics settings
 - [x] Advanced options (caching, performance)
@@ -24,6 +25,7 @@ A WordPress plugin providing live search functionality with AJAX-powered autocom
 - [x] AJAX search handler
 - [x] Search query processing with multiple field support
 - [x] Results generation with thumbnails
+- [x] Default search result logic (display configured page when no results found)
 - [x] HTMX integration for live search
 - [x] Conditional loading (only when search form is present)
 - [x] Search delay and minimum character settings
@@ -78,12 +80,14 @@ A WordPress plugin providing live search functionality with AJAX-powered autocom
 - Multiple post type support
 - Search across title, content, excerpt, and custom fields
 - Thumbnail support with fallback images
+- Default search result page when no results found
 
 ### Admin Interface
 - Comprehensive settings page with tabbed interface
 - Placeholder text configuration
 - Post type selection
 - Search field configuration
+- Default search result page selection
 - Color scheme selection
 - Analytics settings
 
