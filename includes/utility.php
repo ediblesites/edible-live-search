@@ -160,6 +160,19 @@ function edible_live_search_is_search_form_present() {
     if ($post && has_shortcode($post->post_content, 'edible_live_search')) {
         return true;
     }
+
+    // Check for FSE template usage
+    if (function_exists('has_block') && function_exists('parse_blocks')) {
+        // Check if we're in an FSE template
+        if (current_theme_supports('block-templates')) {
+            // Get the current template content
+            $template_content = get_the_block_template_html();
+            if ($template_content) {
+                // Look for our shortcode in the template content
+                return strpos($template_content, '[edible_live_search') !== false;
+            }
+        }
+    }
     
     return false;
 }
