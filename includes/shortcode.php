@@ -12,6 +12,37 @@ if (!defined('ABSPATH')) {
  * Main shortcode function
  */
 function edible_live_search_shortcode($atts) {
+    // Ensure scripts and styles are loaded
+    wp_enqueue_script(
+        'htmx',
+        'https://unpkg.com/htmx.org@1.9.10',
+        array(),
+        '1.9.10',
+        true
+    );
+    
+    wp_enqueue_style(
+        'edible-live-search',
+        EDIBLE_LIVE_SEARCH_PLUGIN_URL . 'public/css/search-style.css',
+        array(),
+        EDIBLE_LIVE_SEARCH_VERSION
+    );
+    
+    wp_enqueue_script(
+        'edible-live-search-keyboard',
+        EDIBLE_LIVE_SEARCH_PLUGIN_URL . 'public/js/search-keyboard.js',
+        array('htmx'),
+        EDIBLE_LIVE_SEARCH_VERSION,
+        true
+    );
+    
+    // Localize script for AJAX URL and nonce
+    wp_localize_script('htmx', 'edible_live_search_ajax', array(
+        'ajax_url' => admin_url('admin-ajax.php'),
+        'nonce' => wp_create_nonce('edible_search'),
+        'action' => 'edible_live_search'
+    ));
+    
     // Parse shortcode attributes
     $atts = shortcode_atts(array(
         'placeholder' => edible_live_search_get_option('placeholder', __('Search...', 'edible-live-search')),
